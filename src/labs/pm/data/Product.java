@@ -17,36 +17,25 @@ public class Product {
         this.price = price;
         this.rating = rating;
     }
+
     public Product(int id, String name, BigDecimal price) {
-        this(id,name,price,Rate.NOT_RATED);
+        this(id, name, price, Rate.NOT_RATED);
     }
 
     public Product() {
-        this(0,"no name",BigDecimal.ZERO);
+        this(0, "no name", BigDecimal.ZERO);
     }
 
     public int getId() {
         return id;
     }
 
-    public void setId(final int id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
     }
 
-    public void setName(final String name) {
-        this.name = name;
-    }
-
     public BigDecimal getPrice() {
         return price;
-    }
-
-    public void setPrice(final BigDecimal price) {
-        this.price = price;
     }
 
     public Rate getRating() {
@@ -57,7 +46,11 @@ public class Product {
         this.rating = rating;
     }
 
-    public BigDecimal getDiscoutn(){
+    public BigDecimal getDiscoutn() {
         return price.multiply(DISCOUTN_RATE).setScale(2, RoundingMode.HALF_UP);
+    }
+
+    public Product applyRating(Rate newRating) {
+        return new Product(id, name, price, newRating);
     }
 }
